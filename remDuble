@@ -1,0 +1,6 @@
+    void remDuble(std::list<int>& l ){
+        for( auto it = l.begin(); it != l.end(); ){
+            if(*it == 10) list.erase(it);
+            else ++it
+        }
+    }
