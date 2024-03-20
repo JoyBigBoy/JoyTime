@@ -1,0 +1,129 @@
+#include <iostream>
+#include <vector>
+#include <fstream>
+using namespace std;
+ 
+class Point {
+   private:
+      int x{0};     
+      int y{0};
+      
+   public:
+      Point() {}
+      Point(int f, int i) : x(f) , y(i){}
+      friend ostream &operator<<( ostream &output, const Point &p ) { 
+         output << p.x << " " << p.y << endl ;
+         return output;            
+      }
+
+      friend istream &operator>>( istream  &input, Point &p ) { 
+         input >>p.x >> p.y;
+         return input;            
+      }
+
+      bool operator!= (const Point& p){
+        return p.x != x || p.y != y;
+      }
+      
+};
+
+int main() {
+    constexpr int count_point = 2;
+    vector<Point> vp , vp_new;
+    
+    for( int i = 0; i < count_point ; i++ ){
+        Point p ;
+        cin >> p;
+        vp.push_back(p);
+    }
+    for(const auto & i : vp)    cout << i << endl;
+    
+    ofstream f("myfile");#include <iostream>
+#include <vector>
+#include <fstream>
+using namespace std;
+ 
+class Point {
+   private:
+      int x{0};     
+      int y{0};
+      
+   public:
+      Point() {}
+      Point(int f, int i) : x(f) , y(i){}
+      friend ostream &operator<<( ostream &output, const Point &p ) { 
+         output << p.x << " " << p.y << endl ;
+         return output;            
+      }
+
+      friend istream &operator>>( istream  &input, Point &p ) { 
+         input >>p.x >> p.y;
+         return input;            
+      }
+
+      bool operator!= (const Point& p){
+        return p.x != x || p.y != y;
+      }
+      
+};
+
+int main() {
+    constexpr int count_point = 2;
+    vector<Point> vp , vp_new;
+    
+    for( int i = 0; i < count_point ; i++ ){
+        Point p ;
+        cin >> p;
+        vp.push_back(p);
+    }
+    for(const auto & i : vp)    cout << i << endl;
+    
+    ofstream f("myfile");
+
+    for(const auto & i : vp)    f << i << endl;
+
+    f.close();
+
+    ifstream is("myfile");
+
+    for( Point p ; is >> p;  ){
+        vp_new.push_back(p);
+    }
+
+    for(const auto & i : vp_new)    cout << "new " << i << endl;
+
+    if(vp.size() != vp_new.size()) { cout << "Size Not Equal" << endl; return -1 ; }
+
+    for(int i = 0 ; i < vp.size() ; i++){
+            if (vp[i] != vp_new[i]) { 
+                cout << " vp " << vp[i] << " vp_new " << vp_new[i] << "Element Not Equal" << endl; 
+            return -1 ; }
+    }
+
+
+   return 0;
+}
+
+    for(const auto & i : vp)    f << i << endl;
+
+    f.close();
+
+    ifstream is("myfile");
+
+    for( Point p ; is >> p;  ){
+        vp_new.push_back(p);
+    }
+
+    for(const auto & i : vp_new)    cout << "new " << i << endl;
+
+    if(vp.size() != vp_new.size()) { cout << "Size Not Equal" << endl; return -1 ; }
+
+    for(int i = 0 ; i < vp.size() ; i++){
+            if (vp[i] != vp_new[i]) { 
+                cout << " vp " << vp[i] << " vp_new " << vp_new[i] << "Element Not Equal" << endl; 
+            return -1 ; }
+    }
+
+
+   return 0;
+}
