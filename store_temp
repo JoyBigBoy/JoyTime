@@ -1,0 +1,50 @@
+#include <vector>
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+class Reading {
+    public:
+    int temp{ 0 };
+    int year{ 0 };
+    int day{ 0 };
+    bool isF;
+    friend istream& operator>> (istream& is , Reading& r){   return is >> r.day >> r.temp ;  }
+    friend ostream& operator<< (ostream& os , const Reading& r){ 
+        int temp{ r.temp };
+        string type = r.isF ? "F" : "C";
+        if(r.isF) temp += 15;
+        
+        return os <<  r.day << " " << r.temp  << endl ;        
+         }
+};
+
+int main() {
+    vector<Reading> vr ;
+
+    for(Reading r ; cin >> r;){
+        vr.push_back(r);
+    }
+    string file("dates");
+    ofstream f(file);   
+
+    for(const auto & i : vr) f << i << endl;
+
+    vector<Reading> vr_new;
+
+    ifstream fi( file ) ;
+
+    for( Reading r; fi >> r;  ){ 
+        vr_new.push_back(r);
+    }
+
+    int sum = 0;
+    for( const auto & i : vr_new ) { 
+        cout << " day " << i.day << " temp " << i.temp << endl;
+        sum += i.temp;
+    }
+
+    cout << "\n sum : " << sum;        
+
+   return 0;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+}
