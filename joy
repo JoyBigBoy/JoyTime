@@ -1,0 +1,33 @@
+#include <iostream>
+#include <vector>
+#include <fstream>
+
+using namespace std;
+ 
+int main() {
+
+    ifstream of("string");
+
+    int sum{0};
+
+
+    for( string str ; of >> str; ){
+        string temp;
+
+        cout << str << endl;
+
+        for(const char c : str){
+            if(isdigit(c)){
+                temp += c;
+            }
+            else{
+                if(temp.size() > 0)
+                    sum += stoi(temp);
+                temp = "";
+            }
+        }
+    }
+    cout << sum;
+
+   return 0;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+}
