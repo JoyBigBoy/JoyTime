@@ -1,0 +1,44 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+    ifstream ifs( "aaa.jpg", ios::binary);
+
+    string str((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
+
+    string str2("\"place\":");
+
+    string str3("\"city\":");
+
+    size_t pos = str.find(str2);
+    size_t pos3 = str.find(str3);
+
+    if (pos != string::npos)
+        cout << "string found at position: " << int(pos) << endl;
+    else {
+        cout << "could not find string" << endl;
+        return -1;
+    }
+    string subOld = str.substr(10   + pos, pos3 - pos - 21);
+    string sub = subOld;
+
+    string str4("м.");
+
+    if (sub.size() < str4.size() || std::equal(str4.rbegin(), str4.rend(), sub.rbegin()) ){
+        sub.resize( sub.size() - str4.size() );
+        sub += "см.";
+
+        str.replace(str.find(subOld),subOld.length(),sub);
+        
+        ofstream is("ccc.jpg");
+        is << str; 
+    }
+
+    cout << "substring is " << sub; 
+
+    return 0;
+}
