@@ -1,0 +1,45 @@
+#include <iostream>
+#include <string>
+using namespace std;
+ 
+class Animal {
+    string name;
+    unsigned int age{0};
+    protected:
+    Animal( string n, int a ): name(n), age(a){}
+    Animal( const Animal& ani ): name(ani.name), age(ani.age){  }
+    
+    public:
+    virtual void print(){ cout << "name " << name << " age " << age <<endl ;}
+    void setName( string s ){ name=s; }
+    void setAge( int a ){ age=a; }    
+};
+class Cat : public Animal{    
+    public:
+    Cat( string n, int a  ): Animal(n , a){}    
+    Cat( const Cat& c) : Animal( c ){ cout << " const Cat copy ";}    
+    void print() override { cout << " Cat " << endl; }
+};
+
+class Dog : public Animal{    
+    public:
+    Dog( string n , int a  ): Animal(n , a){}    
+    Dog( const Cat& c) : Animal( c ){ cout << " const Dog copy ";}    
+    void print() override { cout << " Dog " << endl; }
+};
+ 
+int main()
+{
+    Cat murzik{"Murzik", 20};
+    murzik.print();    
+    Cat c {"Tom", 10};
+    c.print();  
+    Cat cc{c}; // costructor copy
+    cc.print();    
+    
+    Dog d("Good_Boy", 2);
+    Animal& a = d;
+    a.print();
+    
+    return 0;
+}
