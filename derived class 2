@@ -1,0 +1,79 @@
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class B{
+    public:
+    virtual void vf(){ cout << "B::f"; }
+    void f(){ cout << "B::f"; }
+    virtual void vpf() = 0;
+};
+
+class D: public B{
+    public:
+    void vf() override { cout << "D::vf "; }
+};
+
+
+class E : public D {
+    public:
+    void vpf() override { cout << "override"; }
+    
+};
+
+class W {
+    public:
+    virtual void f() = 0;
+    string name{"Ineedafirend"};
+};
+
+class Q : public W{ 
+    public:
+    virtual void f(){
+        cout << "Q::f " << name;
+    }
+};
+
+class R : public W{ 
+    public:
+    void f( W& w){
+        
+        w.f();
+    }
+    virtual void f(){
+        cout << "R::f " << name;
+    }
+    int r[0];
+};
+
+
+
+int main()
+{
+    E e;
+    e.vpf();
+    e.vf();
+    e.f();
+    
+    Q q;
+    q.f();
+    
+    R r;
+    r.f(q);
+
+    // B b;
+    
+    // D d;
+    // d.vf();
+    // d.f();
+    
+    // B& br = d;
+    
+    // br.vf();
+    // br.f();
+
+
+    
+    return 0;
+}
