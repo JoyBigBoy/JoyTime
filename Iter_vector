@@ -1,0 +1,43 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Iter {
+    public:
+    virtual double * next(){ return nullptr;}
+    virtual void print() = 0;
+};
+
+class Vec_iter : public Iter {
+    public:
+    Vec_iter(initializer_list<double> il) : v(il){}
+    double * next() override {
+        static int i{0};
+        
+        if(i < v.size()){
+            pd = &v[i++];
+        }
+        else pd = nullptr;
+        return pd;
+    }
+    double * pd{nullptr};
+    vector<double> v;
+    
+    friend ostream &operator<<( ostream &os, const Vec_iter& v ) {
+       string str = ( v.pd == nullptr ? "nullptr" :  to_string(*v.pd) );
+       return os << str;
+    }
+    void print(){  for(const auto & i : v) cout << i << endl;}
+};
+
+int main()
+{
+    Vec_iter vc( {1,5} );
+    cout << *vc.next() << " " << *vc.next() ;
+    vc.next() ;
+
+    cout << " Jimbo " << vc << "\nprint\n";
+    vc.print();
+    return 0;
+}
