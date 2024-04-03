@@ -38,6 +38,8 @@ int main()
     vc.next() ;
 
     cout << " Jimbo " << vc << "\nprint\n";
+    
+    Iter& iter = vc;
     vc.print();
     return 0;
 }
