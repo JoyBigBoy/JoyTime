@@ -10,6 +10,8 @@ class Iter {
 };
 
 class Vec_iter : public Iter {
+    vector<double> v;
+    double * pd{nullptr};
     public:
     Vec_iter(initializer_list<double> il) : v(il){}
     double * next() override {
@@ -21,14 +23,12 @@ class Vec_iter : public Iter {
         else pd = nullptr;
         return pd;
     }
-    double * pd{nullptr};
-    vector<double> v;
     
     friend ostream &operator<<( ostream &os, const Vec_iter& v ) {
        string str = ( v.pd == nullptr ? "nullptr" :  to_string(*v.pd) );
        return os << str;
     }
-    void print(){  for(const auto & i : v) cout << i << endl;}
+    void print(){  for(const auto & i : v) cout << i << " ";}
 };
 
 int main()
@@ -43,3 +43,4 @@ int main()
     vc.print();
     return 0;
 }
+
